@@ -1,6 +1,5 @@
 from distutils.core import setup, Extension
 
-print vars()
                            
 setup(  name = "yara-python",
         version = "1.5",

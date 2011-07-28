@@ -623,7 +623,6 @@ inline int string_match(unsigned char* buffer, size_t buffer_size, STRING* strin
 	int i, len;
 	int is_wide_char;
 	
-	unsigned char tmp_buffer[512];
 	unsigned char* tmp;
 	
 	if (IS_HEX(string))
@@ -636,25 +635,13 @@ inline int string_match(unsigned char* buffer, size_t buffer_size, STRING* strin
 		{
 			i = 0;
 			
-			while(  i < buffer_size - 1 && 
-			        buffer[i] >= 32 &&        // buffer[i] is a ... 
-			        buffer[i] <= 126 &&       // ... printable character
-			        buffer[i + 1] == 0)
+			while(i < buffer_size - 1 && isalphanum[buffer[i]] && buffer[i + 1] == 0)
 			{
 				i += 2;
 			}
 						
 			len = i/2;
-						
-			if (len > sizeof(tmp_buffer))
-			{
-			    tmp = yr_malloc(len);
-            }
-            else 
-            {
-                tmp = tmp_buffer;
-            }
-            
+			tmp = yr_malloc(len);
             i = 0;
 			
 			if (tmp != NULL)
@@ -666,12 +653,8 @@ inline int string_match(unsigned char* buffer, size_t buffer_size, STRING* strin
 				}
 								
 				match = regexp_match(tmp, len, string->string, string->length, string->re, (negative_size > 2));
-			    
-			    if (len > sizeof(tmp_buffer))
-			    {
-				    yr_free(tmp);			
-				} 
-				    
+			
+				yr_free(tmp);			
 				return match * 2;
 			}
 			

@@ -366,7 +366,7 @@ int new_hex_string( YARA_CONTEXT* context,
             result = ERROR_MISMATCHED_BRACKET;
             break;          
         }
-        else if (c == ' ' || c == '\n' || c == '\t')
+        else if (c == ' ')
 		{
 			i++;
 		}
@@ -908,17 +908,12 @@ void free_term(TERM* term)
     case TERM_TYPE_EQ:
     case TERM_TYPE_OF:
     case TERM_TYPE_NOT_EQ:
-    case TERM_TYPE_SHIFT_LEFT:
-    case TERM_TYPE_SHIFT_RIGHT:
-    case TERM_TYPE_BITWISE_OR:
-    case TERM_TYPE_BITWISE_AND:
     
         free_term(((TERM_BINARY_OPERATION*)term)->op1);
         free_term(((TERM_BINARY_OPERATION*)term)->op2);
         break;        
                   
     case TERM_TYPE_NOT:
-    case TERM_TYPE_BITWISE_NOT:
     case TERM_TYPE_INT8_AT_OFFSET:
     case TERM_TYPE_INT16_AT_OFFSET:
     case TERM_TYPE_INT32_AT_OFFSET:  

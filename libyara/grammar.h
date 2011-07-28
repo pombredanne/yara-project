@@ -90,16 +90,14 @@
      _FALSE_ = 306,
      _OR_ = 307,
      _AND_ = 308,
-     _IS_ = 309,
-     _NEQ_ = 310,
-     _EQ_ = 311,
-     _GE_ = 312,
-     _GT_ = 313,
-     _LE_ = 314,
-     _LT_ = 315,
-     _SHIFT_RIGHT_ = 316,
-     _SHIFT_LEFT_ = 317,
-     _NOT_ = 318
+     _NOT_ = 309,
+     _IS_ = 310,
+     _NEQ_ = 311,
+     _EQ_ = 312,
+     _GE_ = 313,
+     _GT_ = 314,
+     _LE_ = 315,
+     _LT_ = 316
    };
 #endif
 /* Tokens.  */
@@ -154,23 +152,21 @@
 #define _FALSE_ 306
 #define _OR_ 307
 #define _AND_ 308
-#define _IS_ 309
-#define _NEQ_ 310
-#define _EQ_ 311
-#define _GE_ 312
-#define _GT_ 313
-#define _LE_ 314
-#define _LT_ 315
-#define _SHIFT_RIGHT_ 316
-#define _SHIFT_LEFT_ 317
-#define _NOT_ 318
+#define _NOT_ 309
+#define _IS_ 310
+#define _NEQ_ 311
+#define _EQ_ 312
+#define _GE_ 313
+#define _GT_ 314
+#define _LE_ 315
+#define _LT_ 316
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 116 "grammar.y"
+#line 111 "grammar.y"
 {
     
     void*           sized_string;
@@ -183,7 +179,7 @@ typedef union YYSTYPE
 
 }
 /* Line 1489 of yacc.c.  */
-#line 187 "grammar.h"
+#line 183 "grammar.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -60,8 +60,6 @@ hexdigit      [a-fA-F0-9]
 ">="                                 { return _GE_;          }
 "=="                                 { return _EQ_;          }
 "!="                                 { return _NEQ_;         }
-"<<"                                 { return _SHIFT_LEFT_;  }
-">>"                                 { return _SHIFT_RIGHT_; }
 "private"                            { return _PRIVATE_;     }
 "global"                             { return _GLOBAL_;      }
 "rule"                               { return _RULE_;        }
@@ -377,7 +375,7 @@ $({letter}|{digit}|_)*               {
                                          BEGIN(regexp);
                                      }
 
-\{({hexdigit}|[ \-|\?\[\]\(\)\n\t])+\} {
+\{({hexdigit}|[ \-|\?\[\]\(\)])+\}   {
                                          int len = strlen(yytext);
 
                                          SIZED_STRING* s = (SIZED_STRING*) yr_malloc(len + sizeof(SIZED_STRING));
@@ -426,8 +424,8 @@ void yyerror(yyscan_t yyscanner, const char *error_message)
     if (error_message != NULL)
     {
         context->last_error = ERROR_SYNTAX_ERROR;
-        strncpy(context->last_error_extra_info, error_message, sizeof(context->last_error_extra_info) - 1);
-        context->last_error_extra_info[sizeof(context->last_error_extra_info)-1] = '\0';
+        strncpy(context->last_error_extra_info, error_message, sizeof(message) - 1);
+        context->last_error_extra_info[sizeof(message)-1] = '\0';
 
         if (context->error_report_function != NULL)
         {
