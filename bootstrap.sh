@@ -3,25 +3,31 @@
 # Quick and dirty script to reset everything
 # regarding libtool, autoconf, automake, etc.
 
+cd libyara
 
-mkdir m4
-mkdir libyara/m4
+# Check if libtoolize exists, if not,
+# try with glibtoolize (Mac OS X name it that way)
 
-# Check if libtoolize exists, if not, try with glibtoolize (Mac OS X name it that way)
 hash libtoolize &> /dev/null
-
 if [ $? -eq 1 ]; then
     glibtoolize
 else
     libtoolize
 fi
 
-cd libyara
 aclocal
 autoheader
 automake --add-missing
 autoreconf
+
 cd ..
+
+hash libtoolize &> /dev/null
+if [ $? -eq 1 ]; then
+    glibtoolize
+else
+    libtoolize
+fi
 
 aclocal
 autoheader
