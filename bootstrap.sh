@@ -16,8 +16,15 @@ else
     libtoolize
 fi
 
-automake --add-missing 
-cd libyara  && aclocal && automake --add-missing && cd ..
+cd libyara
+aclocal
+autoheader
+automake --add-missing
+autoreconf
+cd ..
 
-autoreconf -vif
-cd libyara && aclocal && autoreconf -vif && cd ..
+aclocal
+autoheader
+automake --add-missing
+autoreconf
+
