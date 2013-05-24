@@ -3,6 +3,12 @@
 # Quick and dirty script to reset everything
 # regarding libtool, autoconf, automake, etc.
 
+rm -rf m4
+rm -rf libyara/m4
+
+mkdir m4
+mkdir libyara/m4
+
 cd libyara
 
 # Check if libtoolize exists, if not,
@@ -10,9 +16,9 @@ cd libyara
 
 hash libtoolize &> /dev/null
 if [ $? -eq 1 ]; then
-    glibtoolize
+    glibtoolize --force
 else
-    libtoolize
+    libtoolize --force
 fi
 
 aclocal
@@ -24,9 +30,9 @@ cd ..
 
 hash libtoolize &> /dev/null
 if [ $? -eq 1 ]; then
-    glibtoolize
+    glibtoolize --force
 else
-    libtoolize
+    libtoolize --force
 fi
 
 aclocal

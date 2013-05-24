@@ -3,6 +3,7 @@ LT_INIT
 AM_INIT_AUTOMAKE([-Wall -Werror])
 AC_PROG_CC
 AC_PROG_CXX
+AC_PROG_LIBTOOL
 AC_CONFIG_MACRO_DIR([m4])
 AC_ARG_WITH([re2],
 	[AS_HELP_STRING([--with-re2],[use RE2 instead of PCRE])],
